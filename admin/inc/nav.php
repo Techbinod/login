@@ -46,10 +46,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#news"><i class="fa fa-fw fa-newspaper-o"></i> News Management <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="news" class="collapse">
                             <li>
-                                <a href="#">News Add</a>
+                                <a href="news-add">News Add</a>
                             </li>
                             <li>
-                                <a href="#">News List</a>
+                                <a href="news-list">News List</a>
                             </li>
                         </ul>
                     </li>
