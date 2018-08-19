@@ -55,4 +55,138 @@ function generateRandomString($length = 100){
 }
 
 
+function addNews($data){
+
+	global $conn;
+	$sql = "INSERT INTO news SET
+              
+            title='".$data['title']."',
+            news_date='".$data['news_date']."',
+            description='".$data['description']."',
+            is_sticky='".$data['description']."',
+            file='".$data['file']."'
+
+
+
+
+	       ";
+
+
+   $query = mysqli_query($conn,$sql);
+   if($query){
+   	return mysqli_insert_id($conn);
+   }else{
+   	return false;
+   }
+	
+}
+
+function getAllNews(){
+	global $conn;
+	$sql = "SELECT id,title,news_date,file FROM news order by id DESC";
+	$query = mysqli_query($conn,$sql); 
+
+	if(mysqli_num_rows($query) <=0){
+		return false;
+	}else{
+		$data = array();
+		while($row=mysqli_fetch_assoc($query)){
+            $data[]=$row;
+		}
+		return $data;
+
+	}
+
+
+}
+
+
+function getDataById($table,$id,$is_die = false){
+
+	global $conn;
+
+	$sql = "SELECT * FROM ".$table." WHERE id = ".$id;
+
+
+	$query = mysqli_query($conn,$sql);
+
+	if(mysqli_num_rows($query) <=0){
+		return flase;
+	}else{
+
+		return  mysqli_fetch_assoc($query);
+	}
+
+
+
+} 
+
+
+function updateDataById($table,$data,$row_id ){
+
+	global $conn;
+	
+        $sql= "UPDATE news SET
+                title   ='".$data['title']."',
+            news_date   ='".$data['news_date']."',
+            description ='".$data['description']."',
+            is_sticky   ='".$data['description']."',
+            file        ='".$data['file']."'
+            WHERE id = ".$row_id; 
+
+
+        debugger($sql);
+        exit;
+
+	    $query = mysqli_query($conn, $sql);
+	    if($query){
+	    	return $row_id;
+
+	    }else{
+	    	return false;
+	    }
+
+
+}
+
+function getNewsById($id){
+
+
+	global $conn;
+	$sql = "SELECT *FROM news WHERE id = ".$id;
+	$query = mysqli_query($conn,$sql);
+
+	if(mysqli_num_rows($query) <= 0){
+
+		return false;
+	}else{
+		return mysqli_fetch_assoc($query);
+	}
+
+}
+
+function deleteData($table, $field,$value){
+
+	global $conn;
+
+	$sql =" DELETE FROM ".$table." WHERE ".$field." = '".$value."'";
+
+    
+	$query = mysqli_query($conn, $sql);
+
+	if($query){
+
+		return true;
+
+
+	}else{
+
+	 return false;
+
+	}
+
+}
+
+
+
  ?>
