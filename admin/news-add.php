@@ -87,7 +87,7 @@
                            <label for="" class="control-lable col-sm-3">News Date:</label>
                            <div class="col-sm-8">
 
-                             <input type="text" name ="news_date" id="news_date" required  value="<?php echo date('Y-m-d');?>" class="form-control" value="<?php echo (isset($news_info['news_date'])) ? $news_info['news_date']:''; ?>" > </input>
+                             <input type="text" name ="date" id="date" required  value="<?php echo date('Y-m-d');?>" class="form-control" value="<?php echo (isset($news_info['date'])) ? $news_info['date']:''; ?>" > </input>
                                
                            </div>
                       </div>

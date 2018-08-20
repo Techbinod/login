@@ -18,7 +18,7 @@ if(isset($_POST) && !empty($_POST)){
 
    $data['title']=sanitize($_POST['title']);
    $data['description']=htmlentities(sanitize($_POST['description']));
-   $data['news_date']= sanitize($_POST['news_date']);
+   $data['date']= sanitize($_POST['date']);
    $data['is_sticky']= (isset($_POST['is_sticky']) && $_POST['is_sticky']=='on')? 1:0;
 
    if(isset($_FILES['file']) && $_FILES['file']['error'] == 0){
@@ -70,7 +70,7 @@ if(isset($_POST) && !empty($_POST)){
    }else{
           
           $act = "add";
-   	      $news_id = addNews($data);
+   	      $news_id = addNews('news',$data);
    }
 
 
@@ -108,7 +108,7 @@ if(isset($_POST) && !empty($_POST)){
     
    	  }
 
-   	  $news_info = getNewsById($news_id);
+   	  $news_info = getNewsById('news',$news_id);
    	 
          
    	  if($news_info){

@@ -59,10 +59,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#notice"> <i class="fa fa-file-text" aria-hidden="true"></i> Notice Management <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="notice" class="collapse">
                             <li>
-                                <a href="#">Notice Add</a>
+                                <a href="notice-add">Notice Add</a>
                             </li>
                             <li>
-                                <a href="#">Notice List</a>
+                                <a href="notice-list">Notice List</a>
                             </li>
                         </ul>
                     </li>

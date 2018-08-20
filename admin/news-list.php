@@ -53,8 +53,8 @@
                           <tbody>
                               
                               <?php 
-                              $all_news = getAllNews();
-                            
+                              $all_news = getAllNews('news');
+
                               if($all_news){
                                 foreach($all_news as $key => $news){
                                   ?>
@@ -62,7 +62,7 @@
                                   <tr>
                                       <td><?php echo $key+1; ?></td>
                                       <td><?php echo $news['title']; ?></td>
-                                      <td><?php echo $news['news_date']; ?></td>
+                                      <td><?php echo $news['date']; ?></td>
                                       <td style="width:10%;">
 
                                         

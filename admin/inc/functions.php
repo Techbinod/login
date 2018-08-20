@@ -55,21 +55,20 @@ function generateRandomString($length = 100){
 }
 
 
-function addNews($data){
+function addNews($table,$data){
 
 	global $conn;
-	$sql = "INSERT INTO news SET
+	$sql = "INSERT INTO ".$table." SET
               
             title='".$data['title']."',
-            news_date='".$data['news_date']."',
+            date='".$data['date']."',
             description='".$data['description']."',
-            is_sticky='".$data['description']."',
+            
             file='".$data['file']."'
-
-
-
-
 	       ";
+
+
+	
 
 
    $query = mysqli_query($conn,$sql);
@@ -81,9 +80,11 @@ function addNews($data){
 	
 }
 
-function getAllNews(){
+function getAllNews($table){
 	global $conn;
-	$sql = "SELECT id,title,news_date,file FROM news order by id DESC";
+
+	$sql = "SELECT id,title,date,file FROM ".$table." order by id DESC";
+	
 	$query = mysqli_query($conn,$sql); 
 
 	if(mysqli_num_rows($query) <=0){
@@ -99,6 +100,7 @@ function getAllNews(){
 
 
 }
+
 
 
 function getDataById($table,$id,$is_die = false){
@@ -126,17 +128,13 @@ function updateDataById($table,$data,$row_id ){
 
 	global $conn;
 	
-        $sql= "UPDATE news SET
+        $sql= "UPDATE ".$table." SET
                 title   ='".$data['title']."',
-            news_date   ='".$data['news_date']."',
+            date   ='".$data['date']."',
             description ='".$data['description']."',
-            is_sticky   ='".$data['description']."',
+            is_sticky   ='".$data['is_sticky']."',
             file        ='".$data['file']."'
             WHERE id = ".$row_id; 
-
-
-        debugger($sql);
-        exit;
 
 	    $query = mysqli_query($conn, $sql);
 	    if($query){
@@ -149,11 +147,11 @@ function updateDataById($table,$data,$row_id ){
 
 }
 
-function getNewsById($id){
+function getNewsById($title,$id){
 
 
 	global $conn;
-	$sql = "SELECT *FROM news WHERE id = ".$id;
+	$sql = "SELECT *FROM ".$title." WHERE id = ".$id;
 	$query = mysqli_query($conn,$sql);
 
 	if(mysqli_num_rows($query) <= 0){
