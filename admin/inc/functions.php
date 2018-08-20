@@ -55,4 +55,136 @@ function generateRandomString($length = 100){
 }
 
 
+function addNews($table,$data){
+
+	global $conn;
+	$sql = "INSERT INTO ".$table." SET
+              
+            title='".$data['title']."',
+            date='".$data['date']."',
+            description='".$data['description']."',
+            
+            file='".$data['file']."'
+	       ";
+
+
+	
+
+
+   $query = mysqli_query($conn,$sql);
+   if($query){
+   	return mysqli_insert_id($conn);
+   }else{
+   	return false;
+   }
+	
+}
+
+function getAllNews($table){
+	global $conn;
+
+	$sql = "SELECT id,title,date,file FROM ".$table." order by id DESC";
+	
+	$query = mysqli_query($conn,$sql); 
+
+	if(mysqli_num_rows($query) <=0){
+		return false;
+	}else{
+		$data = array();
+		while($row=mysqli_fetch_assoc($query)){
+            $data[]=$row;
+		}
+		return $data;
+
+	}
+
+
+}
+
+
+
+function getDataById($table,$id,$is_die = false){
+
+	global $conn;
+
+	$sql = "SELECT * FROM ".$table." WHERE id = ".$id;
+
+
+	$query = mysqli_query($conn,$sql);
+
+	if(mysqli_num_rows($query) <=0){
+		return flase;
+	}else{
+
+		return  mysqli_fetch_assoc($query);
+	}
+
+
+
+} 
+
+
+function updateDataById($table,$data,$row_id ){
+
+	global $conn;
+	
+        $sql= "UPDATE ".$table." SET
+                title   ='".$data['title']."',
+            date   ='".$data['date']."',
+            description ='".$data['description']."',
+            is_sticky   ='".$data['is_sticky']."',
+            file        ='".$data['file']."'
+            WHERE id = ".$row_id; 
+
+	    $query = mysqli_query($conn, $sql);
+	    if($query){
+	    	return $row_id;
+
+	    }else{
+	    	return false;
+	    }
+
+
+}
+
+function getNewsById($title,$id){
+
+
+	global $conn;
+	$sql = "SELECT *FROM ".$title." WHERE id = ".$id;
+	$query = mysqli_query($conn,$sql);
+
+	if(mysqli_num_rows($query) <= 0){
+
+		return false;
+	}else{
+		return mysqli_fetch_assoc($query);
+	}
+
+}
+
+function deleteData($table, $field,$value){
+
+	global $conn;
+
+	$sql =" DELETE FROM ".$table." WHERE ".$field." = '".$value."'";
+
+    
+	$query = mysqli_query($conn, $sql);
+
+	if($query){
+
+		return true;
+
+
+	}else{
+
+	 return false;
+
+	}
+
+}
+
+
+
  ?>
