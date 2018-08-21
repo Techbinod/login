@@ -63,7 +63,6 @@ function addNews($table,$data){
             title='".$data['title']."',
             date='".$data['date']."',
             description='".$data['description']."',
-            
             file='".$data['file']."'
 	       ";
 

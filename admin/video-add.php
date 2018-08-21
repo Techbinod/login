@@ -13,17 +13,17 @@
             if($id <= 0){
 
                 $_SESSION['error'] ="Invalid notice id";
-                @header('location:notice-list');
+                @header('location:video-list');
                 exit;
 
             }
 
-            $notice_info = getDataById('notices',$id);
+            $video_info = getDataById('videos',$id);
 
-            if(!$notice_info){
+            if(!$video_info){
 
-                  $_SESSION['warning'] = "Notice already deleted or does not exists in the database";
-                 @header('location:notice-list');
+                  $_SESSION['warning'] = "Video already deleted or does not exists in the database";
+                 @header('location:video-list');
                 exit;
             }
          }
@@ -42,7 +42,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Notice <?php echo ucfirst($act); ?>
+                            Video <?php echo ucfirst($act); ?>
                             
                         </h1>
                         <ol class="breadcrumb">
@@ -52,7 +52,7 @@
 
                            
                             <li class="active"> 
-                                <i class="fa fa-<?php echo ($act == 'edit') ? 'pencil':'plus';?>"></i> Notice <?php echo ucfirst($act); ?>
+                                <i class="fa fa-<?php echo ($act == 'edit') ? 'pencil':'plus';?>"></i> Video <?php echo ucfirst($act); ?>
                             </li>
                         </ol>
                     </div>
@@ -61,13 +61,13 @@
 
                 <div clas="row">
                     
-                    <form action ="notice" method="post" enctype="multipart/form-data" class="form form-horizontal" novalidate>
+                    <form action ="video" method="post"  class="form form-horizontal" novalidate>
 
                       <div class="form-group">
-                           <label for="" class="control-lable col-sm-3">Notice Title:</label>
+                           <label for="" class="control-lable col-sm-3">Youtube Title:</label>
                            <div class="col-sm-8">
 
-                             <input type="text" name ="title" placeholder="notice title"  required class="form-control" id="title" value="<?php echo (isset($notice_info['title'])) ? $notice_info['title']:''; ?>">
+                             <input type="text" name ="title" placeholder="video title"  required class="form-control" id="title" value="<?php echo (isset($video_info['title'])) ? $video_info['title']:''; ?>">
                                
                            </div>
                       </div>
@@ -76,58 +76,39 @@
                            <label for="" class="control-lable col-sm-3">Description:</label>
                            <div class="col-sm-8">
 
-                             <textarea type="text" name ="description"  placeholder="Enter Description Here"  required  class="form-control" id="description" class="form-control" ><?php echo (isset($notice_info['description'])) ? html_entity_decode($notice_info['description']):''; ?></textarea>
+                             <textarea type="text" name ="description"  placeholder="Enter Description Here"  required  class="form-control" id="description" class="form-control" ><?php echo (isset($video_info['description'])) ? html_entity_decode($video_info['description']):''; ?></textarea>
                                
                            </div>
                       </div>
-
-
-
                       <div class="form-group">
-                           <label for="" class="control-lable col-sm-3">Notice Date:</label>
+                           <label for="" class="control-lable col-sm-3">News Date:</label>
                            <div class="col-sm-8">
 
-                             <input type="text" name ="date" id="date" required  value="<?php echo date('Y-m-d');?>" class="form-control" value="<?php echo (isset($notice_info['date'])) ? $notice_info['date']:''; ?>" > </input>
+                             <input type="text" name ="date" id="date" required  value="<?php echo date('Y-m-d');?>" class="form-control" value="<?php echo (isset($video_info['date'])) ? $video_info['date']:''; ?>" > </input>
                                
                            </div>
                       </div>
-
-
-                      
-
-
-                       <div class="form-group">
-                           <label for="" class="control-lable col-sm-3">Image or Pdf:</label>
-                           <div class="col-sm-4">
-                            <input type="file"  name="file" accept="image/*,.pdf" />
-                           
-                           </div>
-                           <div class="col-sm-4">
-                                <?php 
-
-                                 $thumbnail = ADMIN_IMAGES.'thumbnail.png';
-
-                                 if(isset($notice_info['file']) && $notice_info['file']!=null && file_exists(UPLOAD_DIR.'/notice/'.$notice_info['file'])){
-                                    $thumbnail=UPLOAD_URL.'notice/'.$notice_info['file'];
-                                 }
-                                 ?>
                                 
-                                 <img src="<?php echo $thumbnail; ?>" alt="thumbnail" class="img img-thumbnail img-responsive">
-                                 <br>
-                                 <br>
-                                  <input type="checkbox" name="del_old_image" value="<?php echo (isset($notice_info['file']) && !empty($notice_info['file']))? $notice_info['file']:''; ?>"> Delete Image
-                                 
+                       <div class="form-group">
+                           <label for="" class="control-lable col-sm-3">Video Link:</label>
+                           <div class="col-sm-5">
+
+                             <input type="text" name ="file" placeholder="Paste Youtube Link"  required class="form-control" id="title" value="<?php echo (isset($video_info['file'])) ?"https://www.youtube.com/watch?v=".$video_info['file']:''; ?>">
+                               
                            </div>
-                       </div>
+                           <div class="col-sm-4">
+                           	<iframe src="https://www.youtube.com/embed/<?php echo $video_info['file']; ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                           </div>
+                      </div>
 
 
 
                        <div class="form-group">
                            <label for="" class="control-lable col-sm-3"></label>
-                           <div class="col-sm-8">
-                             <input type="hidden" name="notice_id" value="<?php echo (isset($notice_info['id'])) ? $notice_info['id']:''; ?>">
+                           <div class="col-sm-4">
+                             
                             <button class="btn btn-danger" type="reset"><i class="fa fa-trash"></i> Cancel</button>
-                            <button class="btn btn-success" type="submit"><i class="fa fa-trash"></i> Submit</button>
+                           <button class="btn btn-success" type="submit"><i class="fa fa-trash"></i> Submit</button>
                            </div>
                        </div>
 

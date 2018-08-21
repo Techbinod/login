@@ -86,7 +86,7 @@
                                 <a href="#">Image Add</a>
                             </li>
                             <li>
-                                <a href="#">Image Delete</a>
+                                <a href="#">Image List</a>
                             </li>
                         </ul>
                     </li>
@@ -95,10 +95,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#video"><i class="fa fa-video-camera" aria-hidden="true"></i>  Video Management <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="video" class="collapse">
                             <li>
-                                <a href="#">Video Add</a>
+                                <a href="video-add">Video Add</a>
                             </li>
                             <li>
-                                <a href="#">Video Delete</a>
+                                <a href="video-list">Video List</a>
                             </li>
                         </ul>
                     </li>
