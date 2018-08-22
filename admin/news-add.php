@@ -7,8 +7,15 @@
 
          $act = "add";
 
-         if(isset($_GET['id']) && !empty($_GET['id'])){
+         if(isset($_GET['id'], $_GET['act']) && !empty($_GET['id']) && !empty($_GET['act'])){
             $act="edit";
+
+          if($_GET['act']!='edit'){
+            $_SESSION['warning'] = "Invalid action";
+            @header('location:news-list');
+            exit;
+          }
+
             $id = (int)$_GET['id'];
             if($id <= 0){
 
@@ -22,9 +29,9 @@
 
             if(!$news_info){
 
-                  $_SESSION['warning'] = "News already deleted or does not exists in the database";
+                 $_SESSION['warning'] = "News already deleted or does not exists in the database";
                  @header('location:news-list');
-                exit;
+                 exit;
             }
          }
 
@@ -43,7 +50,7 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             News <?php echo ucfirst($act); ?>
-                            
+                             
                         </h1>
                         <ol class="breadcrumb">
                             <li>
@@ -67,7 +74,7 @@
                            <label for="" class="control-lable col-sm-3">News Title:</label>
                            <div class="col-sm-8">
 
-                             <input type="text" name ="title" placeholder="news title"  required class="form-control" id="title" value="<?php echo (isset($news_info['title'])) ? $news_info['title']:''; ?>">
+                             <input type="text" name ="title" placeholder="news title"  required class="form-control" id="title" value="<?php echo (isset($news_info['title']) && !empty($news_info['title'])) ? $news_info['title']:''; ?>">
                                
                            </div>
                       </div>
@@ -76,7 +83,7 @@
                            <label for="" class="control-lable col-sm-3">Description:</label>
                            <div class="col-sm-8">
 
-                             <textarea type="text" name ="description"  placeholder="Enter Description Here"  required  class="form-control" id="description" class="form-control" ><?php echo (isset($news_info['description'])) ? html_entity_decode($news_info['description']):''; ?></textarea>
+                             <textarea type="text" name ="description"  placeholder="Enter Description Here"  required  class="form-control" id="description" class="form-control" ><?php echo (isset($news_info['description']) && !empty($news_info['description'])) ? html_entity_decode($news_info['description']):''; ?></textarea>
                                
                            </div>
                       </div>
@@ -87,7 +94,7 @@
                            <label for="" class="control-lable col-sm-3">News Date:</label>
                            <div class="col-sm-8">
 
-                             <input type="text" name ="date" id="date" required  value="<?php echo date('Y-m-d');?>" class="form-control" value="<?php echo (isset($news_info['date'])) ? $news_info['date']:''; ?>" > </input>
+                             <input type="text" name ="date" id="date" required  value="<?php echo date('Y-m-d');?>" class="form-control" value="<?php echo (isset($news_info['date']) && !empty($news_info['date'])) ? $news_info['date']:''; ?>" > </input>
                                
                            </div>
                       </div>
@@ -131,7 +138,7 @@
                        <div class="form-group">
                            <label for="" class="control-lable col-sm-3"></label>
                            <div class="col-sm-8">
-                             <input type="hidden" name="news_id" value="<?php echo (isset($news_info['id'])) ? $news_info['id']:''; ?>">
+                             <input type="hidden" name="news_id" value="<?php echo (isset($news_info['id']) && !empty($news_info['id'])) ? $news_info['id']:''; ?>">
                             <button class="btn btn-danger" type="reset"><i class="fa fa-trash"></i> Cancel</button>
                             <button class="btn btn-success" type="submit"><i class="fa fa-trash"></i> Submit</button>
                            </div>

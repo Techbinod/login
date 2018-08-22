@@ -1,6 +1,6 @@
 
       <?php 
-
+         
          $page_title= "Dashboard";
          include 'inc/header.php'; 
          
@@ -25,20 +25,20 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Notice List
-                           <a href="notice-add" class="btn btn-success pull-right"><i class="fa fa-send"></i>Add Notice</a>
+                           <a href="notice-add" class="btn btn-success pull-right"><i class="fa fa-send"></i>Add Notice </a>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-newspaper-o"></i> News List
+                                <i class="fa fa-newspaper-o"></i> Notice List
                             </li>
                         </ol>
                     </div>
                 </div>
                 <!-- /.row -->
-
+            
                 <div class="row">
 
                     <table class="table table-bordered table-hover" >
@@ -53,25 +53,26 @@
                           <tbody>
                               
                               <?php 
-                              $all_notices = getAllNews('notices');
-
-                              if($all_notices){
-                                foreach($all_notices as $key => $notices){
+                              $all_notice = getAllNews('notices');
+                              
+                              
+                              if($all_notice){
+                                foreach($all_notice as $key => $notice){
                                   ?>
 
                                   <tr>
                                       <td><?php echo $key+1; ?></td>
-                                      <td><?php echo $notices['title']; ?></td>
-                                      <td><?php echo $notices['date']; ?></td>
+                                      <td><?php echo $notice['title']; ?></td>
+                                      <td><?php echo $notice['date']; ?></td>
                                       <td style="width:10%;">
 
                                         
 
                                         <?php 
                                           
-                                          if($notices['file'] !=null && file_exists(UPLOAD_DIR.'/notice/'.$notices['file'])){
+                                          if($notice['file'] !=null && file_exists(UPLOAD_DIR.'/notice/'.$notice['file'])){
 
-                                            echo ' <img src="'.UPLOAD_URL.'notice/'.$notices['file'].'" class="img img-responsive img-thumbnail" > ';
+                                            echo ' <img src="'.UPLOAD_URL.'notice/'.$notice['file'].'" class="img img-responsive img-thumbnail" > ';
 
                                           }else{
 
@@ -85,11 +86,12 @@
 
                                       </td>
                                       <td>
-                                    <a href="<?php echo SITE_URL.'detail?id='.$notices['id'];  ?>" class="btn btn-primary " target="_news_preview"><i class="fa fa-eye"></i> View</a>
+                                    <a href="<?php echo SITE_URL.'detail?id='.$notice['id'];  ?>" class="btn btn-primary " target="_notice_preview"><i class="fa fa-eye"></i> View</a>
                                     
-                                    <a href="notice-add?id=<?php echo $notices['id'];?>" class="btn btn-success "><i class="fa fa-pencil"></i> Edit </a>
-                                    <!-- news?id=1&act=delete -->
-                                    <a href="notice?id=<?php echo $notices['id'];?>&amp;act=delete" class="btn btn-danger " onclick="return confirm('Are you sure you want to delete')" ><i class="fa fa-pencil"></i> Delete</a>
+                                    <a href="notice-add?id=<?php echo $notice['id'];?>&amp;act=edit" class="btn btn-success "><i class="fa fa-pencil"></i> Edit </a>
+                                    
+
+                                    <a href="notice?id=<?php echo $notice['id'];?>&amp;act=delete" class="btn btn-danger " onclick="return confirm('Are you sure you want to delete')" ><i class="fa fa-pencil"></i> Delete</a>
                                       </td>
                                       
                                   </tr>

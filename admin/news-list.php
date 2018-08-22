@@ -1,6 +1,6 @@
 
       <?php 
-
+         
          $page_title= "Dashboard";
          include 'inc/header.php'; 
          
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <!-- /.row -->
-
+            
                 <div class="row">
 
                     <table class="table table-bordered table-hover" >
@@ -54,7 +54,7 @@
                               
                               <?php 
                               $all_news = getAllNews('news');
-
+                              
                               if($all_news){
                                 foreach($all_news as $key => $news){
                                   ?>
@@ -87,8 +87,9 @@
                                       <td>
                                     <a href="<?php echo SITE_URL.'detail?id='.$news['id'];  ?>" class="btn btn-primary " target="_news_preview"><i class="fa fa-eye"></i> View</a>
                                     
-                                    <a href="news-add?id=<?php echo $news['id'];?>" class="btn btn-success "><i class="fa fa-pencil"></i> Edit </a>
-                                    <!-- news?id=1&act=delete -->
+                                    <a href="news-add?id=<?php echo $news['id'];?>&amp;act=edit" class="btn btn-success "><i class="fa fa-pencil"></i> Edit </a>
+                                    
+
                                     <a href="news?id=<?php echo $news['id'];?>&amp;act=delete" class="btn btn-danger " onclick="return confirm('Are you sure you want to delete')" ><i class="fa fa-pencil"></i> Delete</a>
                                       </td>
                                       

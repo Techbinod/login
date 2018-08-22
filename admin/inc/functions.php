@@ -57,20 +57,30 @@ function generateRandomString($length = 100){
 
 function addNews($table,$data){
 
+
 	global $conn;
-	$sql = "INSERT INTO ".$table." SET
-              
-            title='".$data['title']."',
-            date='".$data['date']."',
-            description='".$data['description']."',
-            file='".$data['file']."'
-	       ";
+	$sql = "INSERT INTO ".$table." SET ";
 
+	    if(is_array($data)){
 
-	
+	    	$temp = array();
+	    	foreach($data as $column_name => $value){
+	    		$str = $column_name."=";
+	    		if(is_string($value)){
+	    			$str .="'".$value."'";
+	    		}else{
+	    			$str .= $value;
+	    		}
+	    		$temp[] = $str;
+	    	}
+	    	$sql .= implode("," , $temp );
+	    }else{
+	    	$sql .= $data;
+	    }
 
-
+  
    $query = mysqli_query($conn,$sql);
+
    if($query){
    	return mysqli_insert_id($conn);
    }else{
@@ -81,9 +91,9 @@ function addNews($table,$data){
 
 function getAllNews($table){
 	global $conn;
-
+    
 	$sql = "SELECT id,title,date,file FROM ".$table." order by id DESC";
-	
+
 	$query = mysqli_query($conn,$sql); 
 
 	if(mysqli_num_rows($query) <=0){
@@ -102,7 +112,7 @@ function getAllNews($table){
 
 
 
-function getDataById($table,$id,$is_die = false){
+function getDataById($table,$id){
 
 	global $conn;
 
@@ -119,22 +129,40 @@ function getDataById($table,$id,$is_die = false){
 	}
 
 
-
+ 
 } 
 
 
 function updateDataById($table,$data,$row_id ){
-
+   
 	global $conn;
 	
-        $sql= "UPDATE ".$table." SET
-                title   ='".$data['title']."',
-            date   ='".$data['date']."',
-            description ='".$data['description']."',
-            is_sticky   ='".$data['is_sticky']."',
-            file        ='".$data['file']."'
-            WHERE id = ".$row_id; 
+        $sql = "UPDATE ".$table." SET ";
 
+	    if(is_array($data)){
+
+	    	$temp = array();
+	    	foreach($data as $column_name => $value){
+	    		$str = $column_name."=";
+	    		if(is_string($value)){
+	    			$str .="'".$value."'";
+	    		}else{
+	    			$str .= $value;
+	    		}
+	    		$temp[] = $str;
+	    	}
+	    	$sql .= implode("," , $temp );
+	    }else{
+	    	$sql .= $data;
+	    	
+	    }
+
+	    $sql .=" WHERE id = ".$row_id."";
+	   
+
+    
+    
+  
 	    $query = mysqli_query($conn, $sql);
 	    if($query){
 	    	return $row_id;

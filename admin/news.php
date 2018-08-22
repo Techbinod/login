@@ -7,19 +7,14 @@ require 'inc/session.php';
 require 'inc/notification.php';
 
 if(isset($_POST) && !empty($_POST)){
-  
-
-   /*echo "<pre>";
-		print_r($_POST);
-		print_r($_FILES);
-	echo "</pre>";
-   $data=array();
-   exit;*/
-
+ 
+   
+   
    $data['title']=sanitize($_POST['title']);
    $data['description']=htmlentities(sanitize($_POST['description']));
    $data['date']= sanitize($_POST['date']);
    $data['is_sticky']= (isset($_POST['is_sticky']) && $_POST['is_sticky']=='on')? 1:0;
+
 
    if(isset($_FILES['file']) && $_FILES['file']['error'] == 0){
 
@@ -61,11 +56,15 @@ if(isset($_POST) && !empty($_POST)){
 
    }
 
-   $news_id = isset($_POST['id'])?(int)$_POST['id']:0;
+   
 
+   $news_id = isset($_POST['news_id'])?(int)$_POST['news_id']:0;
+
+    
    if($news_id > 0){
       $act = "update";
    	 $news_id = updateDataById('news',$data,$news_id);
+
 
    }else{
           

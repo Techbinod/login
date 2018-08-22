@@ -106,7 +106,7 @@
                        <div class="form-group">
                            <label for="" class="control-lable col-sm-3"></label>
                            <div class="col-sm-4">
-                             
+                             <input type="hidden" name="video_id" value="<?php echo (isset($video_info['id']) && !empty($video_info['id'])) ? $video_info['id']:''; ?>">
                             <button class="btn btn-danger" type="reset"><i class="fa fa-trash"></i> Cancel</button>
                            <button class="btn btn-success" type="submit"><i class="fa fa-trash"></i> Submit</button>
                            </div>
