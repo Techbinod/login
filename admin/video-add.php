@@ -7,12 +7,19 @@
 
          $act = "add";
 
-         if(isset($_GET['id']) && !empty($_GET['id'])){
+         if(isset($_GET['id'], $_GET['act']) && !empty($_GET['id']) && !empty($_GET['act'])){
             $act="edit";
+
+          if($_GET['act']!='edit'){
+            $_SESSION['warning'] = "Invalid action";
+            @header('location:video-list');
+            exit;
+          }
+
             $id = (int)$_GET['id'];
             if($id <= 0){
 
-                $_SESSION['error'] ="Invalid notice id";
+                $_SESSION['error'] ="Invalid news id";
                 @header('location:video-list');
                 exit;
 

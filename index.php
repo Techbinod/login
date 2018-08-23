@@ -158,7 +158,7 @@
                                
                                   <div class="card-body">
                                     <p class="card-text">As the Head of the Academy, I have the pleasure to assure all the prospective students that you will find this place conducive and productive for your academic pursuit. We focus on imparting quality education and availing of all necessary opportunities to our students for gaining excellence in their respective subjects..</p>
-                                    <a href="" class="btn btn-primary">ReadMore..</a>
+                                    <a href="<?php echo PAGES_URL; ?>about-us" class="btn btn-primary">ReadMore..</a>
                                 </div>
                             </div>
                         </div>

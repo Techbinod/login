@@ -34,10 +34,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#banner"><i class="fa fa-fw fa-list"></i> Banner Management <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="banner" class="collapse">
                             <li>
-                                <a href="#">Banner Add</a>
+                                <a href="banner-add">Banner Add</a>
                             </li>
                             <li>
-                                <a href="#">Banner List</a>
+                                <a href="banner-list">Banner List</a>
                             </li>
                         </ul>
                     </li>
@@ -71,10 +71,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#calendar"><i class="fa fa-calendar" aria-hidden="true"></i> Calendar Management <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="calendar" class="collapse">
                             <li>
-                                <a href="#">Calendar Add</a>
+                                <a href="calendar-add">Calendar Add</a>
                             </li>
                             <li>
-                                <a href="#">Calendar List</a>
+                                <a href="calendar-list">Calendar List</a>
                             </li>
                         </ul>
                     </li>
@@ -102,6 +102,20 @@
                             </li>
                         </ul>
                     </li>
+
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#comment"><i class="fa fa-comment" aria-hidden="true"></i>  Review Management <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="comment" class="collapse">
+                            <li>
+                                <a href="review-add">Review Add</a>
+                            </li>
+                            <li>
+                                <a href="review-list">Review List</a>
+                            </li>
+                        </ul>
+                    </li>
+
                    
                 </ul>
             </div>

@@ -1,6 +1,6 @@
 
       <?php 
-
+         
          $page_title= "Dashboard";
          include 'inc/header.php'; 
          
@@ -24,21 +24,21 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            Video  List
-                           <a href="video-add" class="btn btn-success pull-right"><i class="fa fa-send"></i>Add Video</a>
+                            Calendar List
+                           <a href="calendar-add" class="btn btn-success pull-right"><i class="fa fa-send"></i>Add Calendar</a>
                         </h1>
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
                             </li>
                             <li class="active">
-                                <i class="fa fa-newspaper-o"></i> Video List
+                                <i class="fa fa-newspaper-o"></i> Calendar List
                             </li>
                         </ol>
                     </div>
                 </div>
                 <!-- /.row -->
-
+            
                 <div class="row">
 
                     <table class="table table-bordered table-hover" >
@@ -53,30 +53,47 @@
                           <tbody>
                               
                               <?php 
-                              $all_videos = getAllNews('videos');
-                              
+                              $all_calendar = getAllNews('calendars');
+                            
+                                
 
-                              if($all_videos){
-                                foreach($all_videos as $key => $videos){
+                              
+                              if($all_calendar){
+                                foreach($all_calendar as $key => $calendar){
                                   ?>
 
                                   <tr>
                                       <td><?php echo $key+1; ?></td>
-                                      <td><?php echo $videos['title']; ?></td>
-                                       <td><?php echo $videos['date']; ?></td>
-                                      
-                                      
+                                      <td><?php echo $calendar['title']; ?></td>
+                                      <td><?php echo $calendar['date']; ?></td>
                                       <td style="width:10%;">
-                                      	<iframe src="https://www.youtube.com/embed/<?php echo $videos['file']; ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
                                         
+
+                                        <?php 
+                                          
+                                          if($calendar['file'] !=null && file_exists(UPLOAD_DIR.'/calendar/'.$calendar['file'])){
+
+                                            echo ' <img src="'.UPLOAD_URL.'calendar/'.$calendar['file'].'" class="img img-responsive img-thumbnail" > ';
+
+                                          }else{
+
+                                            echo "Image not Uploaded";
+
+                                          }
+
+                                          
+
+                                        ?>
+
                                       </td>
                                       <td>
-                                    <a href="<?php echo SITE_URL.'detail?id='.$videos['id'];  ?>" class="btn btn-primary " target="_news_preview"><i class="fa fa-eye"></i> View</a>
+                                    <a href="<?php echo SITE_URL.'detail?id='.$calendar['id'];  ?>" class="btn btn-primary " target="_calendar_preview"><i class="fa fa-eye"></i> View</a>
                                     
-                                    <a href="video-add?id=<?php echo $videos['id'];?>&amp;act=edit" class="btn btn-success "><i class="fa fa-pencil"></i> Edit </a>
+                                    <a href="calendar-add?id=<?php echo $calendar['id'];?>&amp;act=edit" class="btn btn-success "><i class="fa fa-pencil"></i> Edit </a>
                                     
-                                    <a href="video?id=<?php echo $videos['id'];?>&amp;act=delete" class="btn btn-danger " onclick="return confirm('Are you sure you want to delete')" ><i class="fa fa-pencil"></i> Delete</a>
+
+                                    <a href="calendar?id=<?php echo $calendar['id'];?>&amp;act=delete" class="btn btn-danger " onclick="return confirm('Are you sure you want to delete')" ><i class="fa fa-pencil"></i> Delete</a>
                                       </td>
                                       
                                   </tr>
@@ -101,4 +118,3 @@
 
       <?php include 'inc/footer.php'; ?>
    
-  

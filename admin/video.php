@@ -15,39 +15,34 @@ if(isset($_POST) && !empty($_POST)){
    parse_str($youtube_link, $video);
    $id = $video['vid_id'];
    $data['file']= $id;
+
+
   
    
-   $video_id = addNews('videos',$data);
-   if($video_id){
-   	 $_SESSION['success'] = "Video added Successfully.";
-   	 @header('location:video-list');
-   	 exit;
-   }
-
+  
+   $video_id = isset($_POST['video_id'])?(int)$_POST['video_id']:0;
 
    
 
-   $notice_id = isset($_POST['id'])?(int)$_POST['id']:0;
-
-   if($notice_id > 0){
+   if($video_id > 0){
       $act = "update";
-   	 $notice_id = updateDataById('notices',$data,$notice_id);
+   	 $video_id = updateDataById('videos',$data,$video_id);
 
    }else{
           
           $act = "add";
-   	      $notice_id = addNews('notices',$data);
+   	      $video_id = addNews('videos',$data);
    }
 
 
    
-   if($notice_id){
-   	 $_SESSION['success']="Notice ".$act."ed successfully";
+   if($video_id){
+   	 $_SESSION['success']="Video ".$act."ed successfully";
    }else{
-   	 $_SESSION['error']="Sorry! There was problem while ".$act."ing notices.";
+   	 $_SESSION['error']="Sorry! There was problem while ".$act."ing video.";
    }
 
-   @header('location:notice-list');
+   @header('location:video-list');
    exit;
 
 
@@ -67,9 +62,9 @@ if(isset($_POST) && !empty($_POST)){
    	  $video_id = (int)$_GET['id'];
        
    	  if($video_id <=0){
-         $_SESSION['error'] = "Invalid notice id";
+         $_SESSION['error'] = "Invalid video id";
            
-   	  	 @header('location:notice-list');
+   	  	 @header('location:video-list');
    	     exit;
     
    	  }
