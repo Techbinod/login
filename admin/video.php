@@ -4,17 +4,26 @@ require 'inc/functions.php';
 require 'inc/session.php';
 require 'inc/notification.php';
 
+
+
 if(isset($_POST) && !empty($_POST)){
 
    $data['title']=sanitize($_POST['title']);
    $data['description']=htmlentities(sanitize($_POST['description']));
    $data['date']= sanitize($_POST['date']);
-   $post_link=sanitize($_POST['file']);
-   $youtube_link =str_replace('https://youtu.be/', 'https://www.youtube.com/watch?v=', $post_link);
-   $youtube_link = str_replace('https://www.youtube.com/watch?v=', 'vid_id=', $youtube_link);	
-   parse_str($youtube_link, $video);
-   $id = $video['vid_id'];
-   $data['file']= $id;
+  
+
+     $post_link=sanitize($_POST['file']);
+     $youtube_link =str_replace('https://youtu.be/', 'https://www.youtube.com/watch?v=', $post_link);
+     $youtube_link = str_replace('https://www.youtube.com/watch?v=', 'vid_id=', $youtube_link);
+     parse_str($youtube_link, $info);
+     $id = $info['vid_id'];
+
+$data['file'] = $id;
+
+
+
+
 
 
   
@@ -30,6 +39,7 @@ if(isset($_POST) && !empty($_POST)){
 
    }else{
           
+
           $act = "add";
    	      $video_id = addNews('videos',$data);
    }
