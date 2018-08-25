@@ -16,7 +16,7 @@ if(isset($_POST) && !empty($_POST)){
    $data['is_sticky']= (isset($_POST['is_sticky']) && $_POST['is_sticky']=='on')? 1:0;
 
 
-   if(isset($_FILES['file']) && $_FILES['file']['error'] == 0){
+   if(isset($_FILES['file']) && $_FILES['file']['error'] == 0){ 
 
    	$ext=pathinfo($_FILES['file']['name'],PATHINFO_EXTENSION);
    	if(in_array($ext,ALLOWED_EXTENSIONS)){

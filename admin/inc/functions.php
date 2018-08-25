@@ -110,6 +110,27 @@ function getAllNews($table){
 
 }
 
+function getGalleryData($table){
+	global $conn;
+    
+	$sql = "SELECT id,folder,file,color FROM ".$table." order by id DESC";
+
+	$query = mysqli_query($conn,$sql); 
+	
+	if(mysqli_num_rows($query) <=0){
+		return false;
+	}else{
+		$data = array();
+		while($row=mysqli_fetch_assoc($query)){
+            $data[]=$row;
+		}
+		return $data;
+
+	}
+
+
+}
+
 
 
 function getDataById($table,$id){

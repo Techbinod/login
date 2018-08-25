@@ -83,10 +83,10 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#gallery"><i class="fa fa-camera" aria-hidden="true"></i> Gallery Management <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="gallery" class="collapse">
                             <li>
-                                <a href="#">Image Add</a>
+                                <a href="gallery-add">Image Add</a>
                             </li>
                             <li>
-                                <a href="#">Image List</a>
+                                <a href="gallery-list">Image List</a>
                             </li>
                         </ul>
                     </li>
