@@ -13,6 +13,7 @@ define('CSS_URL', ASSETS_URL.'css/');
 define('JS_URL', ASSETS_URL.'js/');
 define('FONT_URL', ASSETS_URL.'fonts/');
 define('IMG_URL', ASSETS_URL.'img/');
+define('UPLOAD_URL',SITE_URL.'upload/');
 define('GALLERY_IMAGE', FRONTEND_URL.'gallery_images/');
 define('PAGES_URL', FRONTEND_URL.'pages/');
 define('FILES_URL', FRONTEND_URL.'files/');

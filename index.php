@@ -52,14 +52,14 @@
 				    
 				     
 				    	<?php 
-                    $news_data = getNewsId();
+                    $news_data = getNewsId('news');
                      if($news_data){
                       
                       foreach($news_data as $data){
                         
                         ?>
                         <li class="list-group-item ">
-                             <a  href="#">
+                             <a  href="<?php echo PAGES_URL; ?>notice">
                               <h5><?php echo date("F j,Y",strtotime($data['date'])); ?></h5>
                                  <p><?php echo $data['title']; ?></p>
                              </a>
@@ -70,7 +70,7 @@
 
                        ?>
                        <hr>
-                        <a style="margin:-29px 5px 2px; border-radius:20px; color:#fff;" href="news-add" class="btn btn-dark w-50"><i class="fa fa-send"></i>Read More</a>
+                        <a style="margin:-29px 5px 2px; border-radius:20px; color:#fff;" href="<?php echo PAGES_URL; ?>notice" class="btn btn-dark w-50"><i class="fa fa-send"></i>Read More</a>
 				  
 				  </ul>
 
@@ -86,32 +86,26 @@
 				  	</div>
 
 				  <ul class="list-group list-group-flush ">
-				    <li class="list-group-item ">
-				    	
-				    	<a  href="#">
-                              <h5>March 3,2018</h5>
-				    	      <p>Class will remain close today and will resume from sunday</p>
-                         </a>
-                         
-				    </li>
-				    <li class="list-group-item ">
-				    	<a  href="#">
-                              <h5>March 3,2018</h5>
-				    	      <p>Class will remain close today and will resume from sunday</p>
-                         </a>
-				    </li>
-				     <li class="list-group-item ">
-				    	<a  href="#">
-                              <h5>March 3,2018</h5>
-				    	      <p>Class will remain close today and will resume from sunday</p>
-                         </a>
-				    </li>
-				    <li class="list-group-item ">
-				    	<a  href="#">
-                              <h5>March 3,2018</h5>
-				    	      <p>Class will remain close today and will resume from sunday</p>
-                         </a>
-				    </li>
+				      <?php 
+                    $news_data = getNewsId('notices');
+                     if($news_data){
+                      
+                      foreach($news_data as $data){
+                        
+                        ?>
+                        <li class="list-group-item ">
+                             <a  href="<?php echo PAGES_URL; ?>notice">
+                              <h5><?php echo date("F j,Y",strtotime($data['date'])); ?></h5>
+                                 <p><?php echo $data['title']; ?></p>
+                             </a>
+                        </li>
+                       <?php 
+                         }
+                       }
+
+                       ?>
+                       <hr>
+                        <a style="margin:-29px 5px 2px; border-radius:20px; color:#fff;" href="<?php echo PAGES_URL; ?>notice" class="btn btn-dark w-50"><i class="fa fa-send"></i>Read More</a>
 				  </ul>
 
                    </div>
@@ -127,7 +121,11 @@
 				  	</div>
 
 				    <div>
-				    	<img class="card-img-top" src="frontend/assets/img/calender.jpg" alt="Card image cap">
+
+             
+
+              
+				    	<img class="card-img-top" src=" <?php echo UPLOAD_URL.'calendar/calender-2018082909275111.jpg'  ?>" alt="Card image cap">
 				    </div>
 
                    </div>

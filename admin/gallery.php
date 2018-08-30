@@ -63,7 +63,9 @@ if(isset($_POST) && !empty($_POST)){
 
    }
    @header('location:gallery-list');
-}elseif(isset($_GET['id'], $_GET['act']) && !empty($_GET['id']) && !empty($_GET['act'])){
+}
+
+if(isset($_GET['id'], $_GET['act']) && !empty($_GET['id']) && !empty($_GET['act'])){
 
      $act= $_GET['act'];
      $id = $_GET['id'];
@@ -86,30 +88,7 @@ if(isset($_POST) && !empty($_POST)){
      }
 
 
- }else{
-
-       
-       
-
-       $data['folder']=$_GET['title'];
-       $data['color']=$_GET['color'];
-       $data['file']=$_GET['image'];
-       $id=$_GET['id'];
-
-       
-     	$update= updateDataById('galleries',$data,$id);
-     	if($update){
-
-     		$_SESSION['success']="Successfully Image Edited";
-     		@header('location:gallery-list');
-        }else{
-        	$_SESSION['error']="Sorry there was problem while editing image gallery";
-     		@header('location:gallery-list');
-        }
-   
-     	
-     	}
-
+ }
 
      
    

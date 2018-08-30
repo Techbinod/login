@@ -43,21 +43,16 @@
 
                 <div clas="row">
                     
-                   <form action="gallery" method="get" enctype="multipart/form-data">
+                   <form action="single-gallery" method="post" enctype="multipart/form-data">
 
                      <div class="form-group">
 
                      	<?php  
                           $id=$_GET['id'];
                      	  $edit = getDataById("galleries",$id);
-
-
+                           
                      	  
-
-                     	
-                     	 
-
-               	  
+                     	               	  
                      	 ?>
                             <div class="form-group">
 		                           <label for="" class="control-lable col-sm-3">Folder Name:</label>
@@ -85,13 +80,14 @@
 		                               
 		                           </div>
 		                           <div class="col-sm-4">
-		                           	<input style="margin-top:50%" type="file" name="image" accept="image/*"><br>
+		                           	<input style="margin-top:50%" type="file" name="file" accept="image/*"><br>
 		                           
 		                           	<br>
 		                           	<br>
 		                             <br>
 		                             <input type="hidden" name="id" value="<?php echo $id; ?>">
-		                             <input type="hidden" name="color" value="<?php echo $edit['color']; ?>">
+                                 <input type="hidden" name="color" value="<?php echo $edit['color']; ?>">
+		                             <input type="hidden" name="file" value="<?php echo $edit['file']; ?>">
 		                           	<button class="btn btn-danger" type="reset"><i class="fa fa-trash"></i> Cancel</button>
 		                           	 
                             <button class="btn btn-success" type="submit"><i class="fa fa-send"></i> Submit</button>

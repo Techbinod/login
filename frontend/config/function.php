@@ -19,14 +19,13 @@ function debugger($data,$is_die = false){
 
 
 
-function getNewsId(){
+function getNewsId($tables){
 	global $conn;
 	if($conn){
 
 	}
-	$sql = "SELECT *  FROM news WHERE status =1 ORDER BY id DESC LIMIT 4 ";
+	$sql = "SELECT *  FROM ".$tables. " WHERE status =1 ORDER BY id DESC LIMIT 4 ";
 	$query = mysqli_query($conn, $sql);
-
 	if(mysqli_num_rows($query) <= 0){
 		return false;
 	}else{
