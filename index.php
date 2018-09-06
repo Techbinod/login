@@ -13,15 +13,34 @@
 
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active">
-       <img src="frontend/assets/img/cover1_img.jpg" class="img-fluid">  
-    </div>
-    <div class="carousel-item">
-       <img src="frontend/assets/img/cover_img.jpg" class="img-fluid">  
-    </div>
-    <div class="carousel-item">
-       <img src="frontend/assets/img/cover1_img.jpg" class="img-fluid">  
-    </div>
+
+        
+    <?php 
+    $banner_image = getNewsId('banners');
+    if($banner_image){
+      foreach ($banner_image as $key => $data) {
+
+      if($key==0){
+         ?>
+         <div class="carousel-item active">
+          <img src="<?php echo UPLOAD_URL.'banner/'.$data['file']; ?>" class="img-fluid">  
+         </div>
+
+         <?php  
+      }
+    ?>
+       <div class="carousel-item">
+       <img src="<?php echo UPLOAD_URL.'banner/'.$data['file']; ?>" class="img-fluid">  
+       </div>
+    <?php 
+
+      }
+    }
+    
+     ?>
+    
+
+    
   </div>
   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -52,7 +71,7 @@
 				    
 				     
 				    	<?php 
-                    $news_data = getNewsId('news');
+                    $news_data =getNewsId('news');
                      if($news_data){
                       
                       foreach($news_data as $data){
@@ -169,40 +188,81 @@
                         
                         <h1>Student Voice</h1>
                         <hr>
-                         <div class="row">
+                         <div class="row student">
 
-                            <div class="col-md-4 student">
+                            <div class="col-md-12 ">
                              
-                              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                              <div id="carouselExampleControls1" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-    <div class="carousel-item active">
-       <img src="frontend/assets/img/student1.jpg" class="img-responsive">
+   <?php 
+    $review_data = getNewsId('reviews');
 
-    </div>
-    <div class="carousel-item">
-       <img src="img/teacher.png" class="img-responsive"> 
-    </div>
-    <div class="carousel-item">
-       <img src="frontend/assets/img/student1.jpg" class="img-responsive"> 
-    </div>
+
+    if($review_data){
+   
+      foreach ($review_data as $key => $data) {
+         $description=html_entity_decode ($data['description']);
+        
+
+      if($key==0){
+         ?>
+         <div class="carousel-item active">
+           <div class="row">
+             <div class="col-md-4">
+                <img src="<?php echo UPLOAD_URL.'review/'.$data['file']; ?>" class="img-fluid">
+                <hr>
+               <b> <?php echo $data['title']; ?></b> 
+             </div>
+             <div class="col-md-7">
+              <p ><?php  echo $description; ?></p> 
+                      </div>
+           </div>
+         
+         </div>
+       
+
+         <?php  
+      }
+    ?>
+       <div class="carousel-item">
+       <div class="row">
+             <div class="col-md-4">
+                <img src="<?php echo UPLOAD_URL.'review/'.$data['file']; ?>" class="img-fluid">
+                <hr>
+                <b><?php echo $data['title']; ?></b>
+             </div>
+             <div class="col-md-7">
+              <p ><?php echo $description; ?></p> 
+                      </div>
+           </div>
+       </div>
+        
+    <?php 
+      
+      }
+    }
+    
+     ?>
   </div>
 
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+
+
+  <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+  <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-  <hr>
-  <h5>Ritika Manandhar</h5>
+  
+  
 </div>
                             </div>
                               
-                            <div style="text-align: justify;" class="col-md-8">
-                              <p>It Is my immense pleasure to become a part of Tribhuwan Adarsha Awasiya Secondary School. Highly Qualified teachers, well equipped Science lab along with the friendly environment boosted my confidence and provided me platform to show my capabilities. Better SEE results every year  has proven that it is one of the best school in Pharping,Dakshinkali Municipality. So I suggest you all to join TAASS and make your future bright.</p>
-                            </div>
+                            
+                              
+                           
 
                          </div>
                       </div>
@@ -215,6 +275,11 @@
 
     <div class="container-fluid image_gallery">
           
+               <?php 
+
+               $image_data = getNewsId('images');
+
+                ?>
               
           <div class="container">
             <h1 class="text-center">Gallery</h1>
@@ -222,10 +287,10 @@
               <div class="col-md-6 ">
                 
                  <div class="hover_box">
-                   <img src="frontend/assets/img/football.jpg" class="img-thumbnail">
+                   <img src="<?php echo UPLOAD_URL.'image/'.$image_data[0]['file']; ?>" class="img-thumbnail">
                      <div class="hover_text">
                        <h5>
-                        TASS Junior Wings Playing At ANFA Academy against team Star Academy At Final Round.
+                       <?php echo $image_data[0]['title']; ?>
                        </h5>
                      </div>
                  </div>
@@ -236,29 +301,44 @@
               </div>
               
               <div class="col-md-6">
-                <iframe  width="100%" height="407px" src="https://www.youtube.com/embed/MKwhZJUM1EM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+                <?php 
+
+                $video_data=getNewsId('videos');
+                
+                $video_id= $video_data[0]['file'];
+                
+
+                 ?>
+                <iframe  width="100%" height="407px" src="https://www.youtube.com/embed/<?php echo $video_id; ?>" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
               </div>
            
           </div>
 
           <div class="row ">
-              <div class="col-md-6"><div class="hover_box">
-                   <img src="frontend/assets/img/football.jpg" class="img-thumbnail">
+
+              <div class="col-md-6">
+                <div class="hover_box">
+                   <img src="<?php echo UPLOAD_URL.'image/'.$image_data[1]['file']; ?>" class="img-thumbnail">
                      <div class="hover_text">
                         <h5>
-                        TASS Junior Wings Playing At ANFA Academy against team Star Academy At Final Round.
+                        <?php 
+                        echo $image_data[1]['title'];
+                         ?>
                        </h5>
                      </div>
-                 </div></div>
+                 </div>
+               </div>
 
               <div class="col-md-6"><div class="hover_box">
-                   <img src="frontend/assets/img/football.jpg" class="img-thumbnail">
+                   <img src="<?php echo UPLOAD_URL.'image/'.$image_data[2]['file']; ?>" class="img-thumbnail">
                      <div class="hover_text">
                         <h5>
-                        TASS Junior Wings Playing At ANFA Academy against team Star Academy At Final Round.
+                         <?php echo $image_data[2]['title']; ?>
                        </h5>
                      </div>
-                 </div></div>
+                 </div>
+               </div>
              
             
           </div>

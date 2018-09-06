@@ -67,6 +67,19 @@
                         </ul>
                     </li>
 
+
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#calendar"><i class="fa fa-picture-o" aria-hidden="true"></i> Image Management <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="calendar" class="collapse">
+                            <li>
+                                <a href="image-add">Image Add</a>
+                            </li>
+                            <li>
+                                <a href="image-list">Image List</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#calendar"><i class="fa fa-calendar" aria-hidden="true"></i> Calendar Management <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="calendar" class="collapse">
